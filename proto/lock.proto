@@ -1,0 +1,24 @@
+syntax="proto3";
+package locker;
+
+service LockManager {
+    rpc Lock(LockRequest) returns (GenericReply);
+    rpc Unlock(UnlockRequest) returns (GenericReply);
+}
+
+message LockRequest {
+    string name = 1;
+    string random_id = 2;
+    uint64 ttl = 3;
+}
+
+message UnlockRequest {
+    string name = 1;
+    string random_id = 2;
+}
+
+message GenericReply {
+    optional bool ok = 1;
+    optional uint64 err_code = 2;
+    optional string err_message = 3;
+}
