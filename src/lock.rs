@@ -160,7 +160,8 @@ impl LockManager for MyLockManager {
             Ok(_) => {
                 return construct_response(true, 0, "");
             }
-            Err(_) => {
+            Err(e) => {
+                println!("error update_lock_record {:?}", e);
                 return construct_response(false, ErrCodes::SystemError as u64, INVALID_SQL_QUERY);
             }
         }
